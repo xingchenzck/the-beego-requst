@@ -1,5 +1,4 @@
-package controllers
-
+package controller
 import (
 	"encoding/json"
 	"fmt"
@@ -31,29 +30,43 @@ func (c *MainController) Get() {
 }
 
 
+//
+//func (c *MainController) Post(){
+//	//解析json格式的文件
+//	var person models.Person
+//	dateBytes, err := ioutil.ReadAll(c.Ctx.Request.Body)
+//	if err!= nil {
+//		c.Ctx.WriteString("接收错误")
+//		return
+//	}
+//	err = json.Unmarshal(dateBytes,&person)
+//	if err!= nil {
+//		c.Ctx.WriteString("解析错误")
+//		return
+//	}
+//	fmt.Println("姓名",person.Name)
+//	fmt.Println("年龄",person.Age)
+//	fmt.Println("性别",person.Sex)
+//	c.Ctx.WriteString("访问成功")
+//}
 
 func (c *MainController) Post(){
-	//解析json格式的文件
-	var person models.Person
-	dateBytes, err := ioutil.ReadAll(c.Ctx.Request.Body)
-	if err!= nil {
-		c.Ctx.WriteString("接收错误")
+	var derson models.Derson
+	 dataBtes ,err :=ioutil.ReadAll(c.Ctx.Request.Body)
+	 if err != nil {
+	 	c.Ctx.WriteString("开始接受错误")
+		 return
+	 }
+	 err =json.Unmarshal(dataBtes,&derson)
+	if err !=nil {
+		c.Ctx.WriteString("开始解析错误")
 		return
 	}
-	err = json.Unmarshal(dateBytes,&person)
-	if err!= nil {
-		c.Ctx.WriteString("解析错误")
-		return
-	}
-	fmt.Println("姓名",person.Name)
-	fmt.Println("年龄",person.Age)
-	fmt.Println("性别",person.Sex)
-	c.Ctx.WriteString("访问成功")
-}
+	fmt.Println("姓名",derson.Name)
+	fmt.Println("生日",derson.Birthday)
+	fmt.Println("地址",derson.Address)
+	fmt.Println("尼克",derson.Nick)
+	 c.Ctx.WriteString("你访问成功")
 
-//func (c *MainController) Delet() {
-//	for j := 0; j < 100; j++ {
-//		fmt.Printf("第%d次",j)
-//	}
-//}
+}
 
